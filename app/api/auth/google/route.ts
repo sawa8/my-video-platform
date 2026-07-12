@@ -12,7 +12,15 @@ export async function GET(req: Request) {
   const data = await res.json()
 
   if (data.url) {
-    return NextResponse.redirect(data.url)
+    const redirect = NextResponse.redirect(data.url)
+
+    // BetterAuth が設定した state クッキーをブラウザに転送する
+    const setCookies = res.headers.getSetCookie()
+    for (const cookie of setCookies) {
+      redirect.headers.append('Set-Cookie', cookie)
+    }
+
+    return redirect
   }
 
   return NextResponse.redirect(`${origin}/login`)
