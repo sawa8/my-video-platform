@@ -17,7 +17,12 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
 
   async function handleGoogle() {
-    await authClient.signIn.social({ provider: 'google', callbackURL: '/courses' })
+    try {
+      await authClient.signIn.social({ provider: 'google', callbackURL: '/courses' })
+    } catch (err) {
+      setError('Google ログインに失敗しました。もう一度お試しください。')
+      console.error('Google sign-in error:', err)
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
