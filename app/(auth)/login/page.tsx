@@ -18,12 +18,16 @@ export default function LoginPage() {
 
   async function handleGoogle() {
     try {
-      const res = await authClient.signIn.social({
-        provider: 'google',
-        callbackURL: '/courses',
+      const res = await fetch('/api/auth/sign-in/social', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ provider: 'google', callbackURL: '/courses' }),
       })
-      if (res.data?.url) {
-        window.location.href = res.data.url
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        setError('Google ログインの URL を取得できませんでした')
       }
     } catch (err) {
       setError('Google ログインに失敗しました。もう一度お試しください。')
