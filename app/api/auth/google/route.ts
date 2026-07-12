@@ -12,15 +12,27 @@ export async function GET(req: Request) {
   const data = await res.json()
 
   if (data.url) {
-    const redirect = NextResponse.redirect(data.url)
+    // クッキーを確実にセットしてからリダイレクトするため、
+    // 307 リダイレクトではなく HTML ページを返す。
+    // ブラウザが Set-Cookie を処理した後に meta refresh でリダイレクト。
+    const html = `<!DOCTYPE html>
+<html>
+<head><meta http-equiv="refresh" content="0;url=${data.url}"></head>
+<body><p>Redirecting to Google...</p></body>
+</html>`
+
+    const response = new NextResponse(html, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html' },
+    })
 
     // BetterAuth が設定した state クッキーをブラウザに転送する
     const setCookies = res.headers.getSetCookie()
     for (const cookie of setCookies) {
-      redirect.headers.append('Set-Cookie', cookie)
+      response.headers.append('Set-Cookie', cookie)
     }
 
-    return redirect
+    return response
   }
 
   return NextResponse.redirect(`${origin}/login`)
