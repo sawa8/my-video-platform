@@ -18,7 +18,13 @@ export default function LoginPage() {
 
   async function handleGoogle() {
     try {
-      await authClient.signIn.social({ provider: 'google', callbackURL: '/courses' })
+      const res = await authClient.signIn.social({
+        provider: 'google',
+        callbackURL: '/courses',
+      })
+      if (res.data?.url) {
+        window.location.href = res.data.url
+      }
     } catch (err) {
       setError('Google ログインに失敗しました。もう一度お試しください。')
       console.error('Google sign-in error:', err)
