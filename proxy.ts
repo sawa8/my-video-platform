@@ -4,7 +4,10 @@ import { NextRequest, NextResponse } from 'next/server'
 // Full session validation (DB lookup) is done in layouts/pages.
 // This avoids loading @libsql native addon in the proxy bundle.
 export function proxy(request: NextRequest) {
-  const sessionCookie = request.cookies.get('better-auth.session_token')
+  // HTTPS 環境では BetterAuth が __Secure- プレフィックスを付ける
+  const sessionCookie =
+    request.cookies.get('better-auth.session_token') ||
+    request.cookies.get('__Secure-better-auth.session_token')
 
   if (!sessionCookie) {
     return NextResponse.redirect(new URL('/login', request.url))
