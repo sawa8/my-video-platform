@@ -37,10 +37,16 @@ export function LessonCompleteButton({ lessonId, initialCompleted }: LessonCompl
     <Button
       onClick={toggle}
       disabled={loading}
+      size="lg"
       variant={completed ? 'default' : 'outline'}
-      className={cn(completed && 'bg-green-600 hover:bg-green-700')}
+      className={cn(
+        'gap-2 transition-all duration-200',
+        completed
+          ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm'
+          : 'border-border/60 hover:bg-primary hover:text-primary-foreground hover:border-primary'
+      )}
     >
-      <CheckCircle2 className="mr-2 h-4 w-4" />
+      <CheckCircle2 className="h-4 w-4" />
       {completed ? '完了済み' : 'レッスンを完了にする'}
     </Button>
   )

@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { BookOpen, Play, Award } from 'lucide-react'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -47,20 +47,76 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">アカウント登録</CardTitle>
-          <CardDescription>必要事項を入力して登録してください</CardDescription>
-        </CardHeader>
-        <CardContent>
+    <div className="flex min-h-screen">
+      {/* 左: ブランドパネル */}
+      <div className="hidden hero-gradient lg:flex lg:w-[480px] xl:w-[540px] flex-col justify-between p-10 text-white">
+        <div>
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/15 backdrop-blur-sm">
+              <BookOpen className="h-5 w-5" />
+            </div>
+            <span className="text-xl font-bold tracking-tight">LearnHub</span>
+          </div>
+          <p className="text-sm text-white/60">動画講座プラットフォーム</p>
+        </div>
+
+        <div className="space-y-8">
+          <h2 className="text-3xl font-bold leading-tight tracking-tight">
+            スキルアップを、
+            <br />
+            もっと身近に。
+          </h2>
+          <div className="space-y-5">
+            <div className="flex items-start gap-3.5">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/10">
+                <Play className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold">動画で学ぶ</p>
+                <p className="text-xs text-white/55 leading-relaxed mt-0.5">プロフェッショナルが作成した動画コンテンツで、効率的にスキルを習得</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3.5">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/10">
+                <Award className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold">進捗を管理</p>
+                <p className="text-xs text-white/55 leading-relaxed mt-0.5">学習の進捗を可視化して、モチベーションを維持しながら学習を継続</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p className="text-xs text-white/30">&copy; 2026 LearnHub. All rights reserved.</p>
+      </div>
+
+      {/* 右: 登録フォーム */}
+      <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 bg-background">
+        {/* モバイルのみ: ブランドヘッダー */}
+        <div className="mb-8 text-center lg:hidden">
+          <div className="inline-flex items-center gap-2 mb-1">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <BookOpen className="h-4 w-4" />
+            </div>
+            <span className="text-lg font-bold text-foreground">LearnHub</span>
+          </div>
+          <p className="text-xs text-muted-foreground">動画講座プラットフォーム</p>
+        </div>
+
+        <div className="w-full max-w-sm animate-fade-in-up">
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold text-foreground">アカウント登録</h1>
+            <p className="mt-1.5 text-sm text-muted-foreground">必要事項を入力して学習を始めましょう</p>
+          </div>
+
           <Button
             type="button"
             variant="outline"
-            className="w-full"
+            className="w-full h-11 gap-2.5 border-border/80 hover:bg-muted/50 transition-colors"
             onClick={handleGoogle}
           >
-            <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+            <svg className="h-4 w-4" viewBox="0 0 24 24">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
@@ -68,14 +124,16 @@ export default function RegisterPage() {
             </svg>
             Google で登録
           </Button>
-          <div className="relative">
+
+          <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">または</span>
+              <span className="bg-background px-3 text-muted-foreground">または</span>
             </div>
           </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name">お名前</Label>
@@ -87,6 +145,7 @@ export default function RegisterPage() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 autoComplete="name"
+                className="h-11"
               />
             </div>
             <div className="space-y-2">
@@ -99,6 +158,7 @@ export default function RegisterPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 autoComplete="email"
+                className="h-11"
               />
             </div>
             <div className="space-y-2">
@@ -110,21 +170,22 @@ export default function RegisterPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 autoComplete="new-password"
+                className="h-11"
               />
             </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
-            <Button type="submit" className="w-full" disabled={loading}>
+            {error && <p className="text-sm text-destructive">{error}</p>}
+            <Button type="submit" className="w-full h-11" disabled={loading}>
               {loading ? '登録中...' : '登録する'}
             </Button>
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-muted-foreground">
               既にアカウントをお持ちの方は{' '}
-              <Link href="/login" className="text-blue-600 hover:underline">
+              <Link href="/login" className="font-medium text-primary hover:underline">
                 ログイン
               </Link>
             </p>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

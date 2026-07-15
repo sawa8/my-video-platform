@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { YouTubeEmbed } from '@/components/youtube-embed'
 import { LessonCompleteButton } from '@/components/lesson-complete-button'
+import { ArrowLeft, ChevronRight } from 'lucide-react'
 
 export default async function LessonPage({
   params,
@@ -39,42 +40,45 @@ export default async function LessonPage({
   const isCompleted = !!userProgress
 
   return (
-    <div className="max-w-4xl">
-      <div className="mb-4 flex items-center gap-2 text-sm text-gray-500">
-        <Link href="/courses" className="hover:text-blue-600 hover:underline">
+    <div className="animate-fade-in-up max-w-5xl mx-auto">
+      {/* パンくずリスト */}
+      <nav className="mb-5 flex items-center gap-1.5 text-sm text-muted-foreground overflow-x-auto">
+        <Link href="/courses" className="shrink-0 hover:text-foreground transition-colors">
           コース一覧
         </Link>
-        <span>/</span>
-        <Link href={`/courses/${courseId}`} className="hover:text-blue-600 hover:underline">
+        <ChevronRight className="h-3.5 w-3.5 shrink-0 text-border" />
+        <Link href={`/courses/${courseId}`} className="shrink-0 hover:text-foreground transition-colors truncate max-w-[200px]">
           {course.title}
         </Link>
         {section && (
           <>
-            <span>/</span>
-            <span>{section.title}</span>
+            <ChevronRight className="h-3.5 w-3.5 shrink-0 text-border" />
+            <span className="truncate text-foreground/70">{section.title}</span>
           </>
         )}
-      </div>
+      </nav>
 
-      <h1 className="mb-6 text-2xl font-bold text-gray-900">{lesson.title}</h1>
+      <h1 className="text-2xl font-bold text-foreground tracking-tight mb-6">{lesson.title}</h1>
 
-      <div className="mb-6">
+      {/* ビデオプレーヤー */}
+      <div className="rounded-2xl overflow-hidden shadow-lg mb-8 bg-black/5">
         <YouTubeEmbed url={lesson.youtubeUrl} title={lesson.title} />
       </div>
 
       {lesson.description && (
-        <div className="mb-6 rounded-lg border bg-white p-4 shadow-sm">
-          <h2 className="mb-2 font-semibold">説明</h2>
-          <p className="whitespace-pre-wrap text-gray-700">{lesson.description}</p>
+        <div className="mb-8 rounded-xl border border-border/50 bg-card p-6 shadow-sm">
+          <h2 className="text-base font-semibold text-foreground mb-3">レッスン概要</h2>
+          <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed">{lesson.description}</p>
         </div>
       )}
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-2 pb-4">
         <Link
           href={`/courses/${courseId}`}
-          className="text-sm text-blue-600 hover:underline"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
         >
-          ← コース詳細に戻る
+          <ArrowLeft className="h-3.5 w-3.5" />
+          コース詳細に戻る
         </Link>
         <LessonCompleteButton lessonId={lessonId} initialCompleted={isCompleted} />
       </div>

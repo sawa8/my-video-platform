@@ -50,6 +50,7 @@ export function EmailLoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           required
           autoComplete="email"
+          className="h-11"
         />
       </div>
       <div className="space-y-2">
@@ -61,17 +62,18 @@ export function EmailLoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           required
           autoComplete="current-password"
+          className="h-11"
         />
       </div>
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <p className="text-sm text-destructive">{error}</p>
       )}
-      <Button type="submit" className="w-full" disabled={loading}>
+      <Button type="submit" className="w-full h-11" disabled={loading}>
         {loading ? 'ログイン中...' : 'ログイン'}
       </Button>
-      <p className="text-center text-sm text-gray-500">
+      <p className="text-center text-sm text-muted-foreground">
         アカウントをお持ちでない方は{' '}
-        <Link href="/register" className="text-blue-600 hover:underline">
+        <Link href="/register" className="font-medium text-primary hover:underline">
           新規登録
         </Link>
       </p>

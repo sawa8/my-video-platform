@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { CourseForm } from '@/components/admin/course-form'
 import { CurriculumBuilder } from '@/components/admin/curriculum-builder'
+import { ArrowLeft } from 'lucide-react'
 
 export default async function AdminCourseEditPage({
   params,
@@ -39,29 +40,33 @@ export default async function AdminCourseEditPage({
   }))
 
   return (
-    <div>
-      <div className="mb-6 flex items-center gap-2">
-        <Link href="/admin/courses" className="text-sm text-blue-600 hover:underline">
-          ← コース一覧
-        </Link>
-      </div>
+    <div className="animate-fade-in-up">
+      <Link
+        href="/admin/courses"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-5"
+      >
+        <ArrowLeft className="h-3.5 w-3.5" />
+        コース一覧
+      </Link>
 
-      <h1 className="mb-6 text-2xl font-bold text-gray-900">コースを編集</h1>
+      <h1 className="mb-8 text-2xl font-bold text-foreground tracking-tight">コースを編集</h1>
 
-      <div className="mb-10 max-w-2xl">
-        <h2 className="mb-4 text-lg font-semibold text-gray-700">基本情報</h2>
-        <CourseForm
-          courseId={course.id}
-          defaultValues={{
-            title: course.title,
-            description: course.description,
-            thumbnailUrl: course.thumbnailUrl,
-          }}
-        />
+      <div className="mb-12 max-w-2xl">
+        <h2 className="mb-4 text-lg font-semibold text-foreground">基本情報</h2>
+        <div className="rounded-xl border border-border/50 bg-card p-6 shadow-sm">
+          <CourseForm
+            courseId={course.id}
+            defaultValues={{
+              title: course.title,
+              description: course.description,
+              thumbnailUrl: course.thumbnailUrl,
+            }}
+          />
+        </div>
       </div>
 
       <div>
-        <h2 className="mb-4 text-lg font-semibold text-gray-700">カリキュラム</h2>
+        <h2 className="mb-4 text-lg font-semibold text-foreground">カリキュラム</h2>
         <CurriculumBuilder courseId={courseId} initialSections={sectionsWithLessons} />
       </div>
     </div>
