@@ -72,14 +72,14 @@ export default async function CoursesPage() {
           {totalLessonsAll > 0 && (
             <div className="flex items-center gap-4 mt-5">
               <div className="flex items-center gap-2 text-sm">
-                <div className="h-2 w-2 rounded-full bg-emerald-400" />
+                <div className="h-2 w-2 rounded-full bg-sky-300" />
                 <span className="text-white/80">
                   {totalCompleted} / {totalLessonsAll} レッスン完了
                 </span>
               </div>
               <div className="flex-1 max-w-xs h-1.5 bg-white/15 rounded-full overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-300 transition-all duration-500"
+                  className="h-full rounded-full bg-gradient-to-r from-sky-300 to-cyan-200 transition-all duration-500"
                   style={{ width: `${totalLessonsAll > 0 ? Math.round((totalCompleted / totalLessonsAll) * 100) : 0}%` }}
                 />
               </div>

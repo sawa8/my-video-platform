@@ -26,15 +26,15 @@ export default async function AdminDashboard() {
       label: '公開コース',
       value: publishedCourses.count,
       icon: Eye,
-      color: 'text-emerald-600',
-      bg: 'bg-emerald-50',
+      color: 'text-cyan-500',
+      bg: 'bg-cyan-50',
     },
     {
       label: '登録ユーザー',
       value: totalUsers.count,
       icon: Users,
-      color: 'text-amber-600',
-      bg: 'bg-amber-50',
+      color: 'text-sky-500',
+      bg: 'bg-sky-50',
     },
   ]
 

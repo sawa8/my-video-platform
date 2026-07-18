@@ -87,7 +87,7 @@ export default async function AdminCoursesPage() {
                   <TableCell>
                     <Badge
                       variant={course.published ? 'default' : 'secondary'}
-                      className={course.published ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-50' : ''}
+                      className={course.published ? 'bg-sky-50 text-sky-600 border-sky-200 hover:bg-sky-50' : ''}
                     >
                       {course.published ? '公開' : '非公開'}
                     </Badge>

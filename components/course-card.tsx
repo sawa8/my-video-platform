@@ -48,7 +48,7 @@ export function CourseCard({
             </Badge>
           )}
           {isComplete && (
-            <div className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-white shadow-sm">
+            <div className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-sky-400 text-white shadow-sm">
               <CheckCircle2 className="h-4 w-4" />
             </div>
           )}
@@ -68,8 +68,8 @@ export function CourseCard({
                   style={{
                     width: `${progressPct}%`,
                     background: isComplete
-                      ? 'oklch(0.55 0.15 155)'
-                      : 'linear-gradient(90deg, oklch(0.42 0.10 195), oklch(0.55 0.12 195))',
+                      ? 'oklch(0.72 0.10 230)'
+                      : 'linear-gradient(90deg, oklch(0.62 0.11 235), oklch(0.70 0.10 220))',
                   }}
                 />
               </div>

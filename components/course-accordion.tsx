@@ -53,7 +53,7 @@ export function CourseAccordion({ sections, courseId, initialCompleted }: Course
                 <span className={cn(
                   "text-xs font-medium px-2 py-0.5 rounded-full shrink-0 ml-3",
                   isAllDone
-                    ? "bg-emerald-50 text-emerald-600"
+                    ? "bg-sky-50 text-sky-600"
                     : "bg-muted text-muted-foreground"
                 )}>
                   {sectionCompleted}/{sectionLessons.length}
@@ -74,7 +74,7 @@ export function CourseAccordion({ sections, courseId, initialCompleted }: Course
                         className={cn(
                           'shrink-0 transition-all duration-200',
                           isCompleted
-                            ? 'text-emerald-500 hover:text-emerald-600'
+                            ? 'text-sky-400 hover:text-sky-500'
                             : 'text-border hover:text-muted-foreground',
                         )}
                         title={isCompleted ? '完了を取り消す' : '完了にする'}

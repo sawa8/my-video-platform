@@ -136,13 +136,13 @@ export default async function CourseDetailPage({
                   <circle
                     cx="40" cy="40" r="34"
                     fill="none"
-                    stroke="oklch(0.91 0.006 75)"
+                    stroke="oklch(0.93 0.006 240)"
                     strokeWidth="6"
                   />
                   <circle
                     cx="40" cy="40" r="34"
                     fill="none"
-                    stroke="oklch(0.42 0.10 195)"
+                    stroke="oklch(0.62 0.11 235)"
                     strokeWidth="6"
                     strokeLinecap="round"
                     strokeDasharray={`${2 * Math.PI * 34}`}

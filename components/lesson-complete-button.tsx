@@ -42,7 +42,7 @@ export function LessonCompleteButton({ lessonId, initialCompleted }: LessonCompl
       className={cn(
         'gap-2 transition-all duration-200',
         completed
-          ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm'
+          ? 'bg-sky-500 hover:bg-sky-600 text-white shadow-sm'
           : 'border-border/60 hover:bg-primary hover:text-primary-foreground hover:border-primary'
       )}
     >
